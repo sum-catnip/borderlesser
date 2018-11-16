@@ -1,0 +1,90 @@
+﻿<Controls:MetroWindow x:Class="Borderlesser.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:Borderlesser"
+        mc:Ignorable="d"
+        Title="Borderlesser" Height="555" Width="300"
+        GlowBrush="Purple"
+        Loaded="MetroWindow_Loaded"
+        WindowStyle="ToolWindow"
+        ResizeMode="NoResize">
+
+    <StackPanel Orientation="Vertical" Margin="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height = "40" />
+                <RowDefinition Height = "40" />
+                <RowDefinition Height = "40" />
+                <RowDefinition Height = "40" />
+            </Grid.RowDefinitions>
+
+            <Label HorizontalAlignment="Left" Margin="5" Grid.Column="0" FontSize="16" Grid.Row="0">Hotkey</Label>
+            <StackPanel HorizontalAlignment="Right" Margin="5" Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                <Controls:SplitButton FontSize="14" Width="80" Margin="0,0,5,0" ItemsSource="{Binding Path=HotKeyModifiersBinding}" SelectedIndex="{Binding Path=HotKeyModifierBinding}" Controls:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True"></Controls:SplitButton>
+                <TextBox Width="80" TextAlignment="Center" BorderThickness="1.5" BorderBrush="White" Initialized="HotkeyBox_initialized" PreviewKeyDown="HotkeyBox_keydown" FontSize="16"></TextBox>
+            </StackPanel>
+
+            <Label HorizontalAlignment="Left" Margin="5" Grid.Column="0" FontSize="16" Grid.Row="1">From XY</Label>
+            <StackPanel HorizontalAlignment="Right" Margin="5" Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                <TextBox Width="80" TextAlignment="Center" Margin="0,0,5,0" BorderThickness="1.5" BorderBrush="White" FontSize="16" PreviewTextInput="CheckNumeric_PreviewTextInput" DataObject.Pasting="CheckNumeric_Pasting">
+                    <TextBox.Text>
+                        <Binding Path="FromXBinding" UpdateSourceTrigger="PropertyChanged"></Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox Width="80" TextAlignment="Center" BorderThickness="1.5" BorderBrush="White" FontSize="16" PreviewTextInput="CheckNumeric_PreviewTextInput" DataObject.Pasting="CheckNumeric_Pasting">
+                    <TextBox.Text>
+                        <Binding Path="FromYBinding" UpdateSourceTrigger="PropertyChanged"></Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </StackPanel>
+
+            <Label HorizontalAlignment="Left" Margin="5" Grid.Column="0" FontSize="16" Grid.Row="2">To XY</Label>
+            <StackPanel HorizontalAlignment="Right" Margin="5" Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
+                <TextBox Width="80" TextAlignment="Center" Margin="0,0,5,0" BorderThickness="1.5" BorderBrush="White" FontSize="16" PreviewTextInput="CheckNumeric_PreviewTextInput" DataObject.Pasting="CheckNumeric_Pasting">
+                    <TextBox.Text>
+                        <Binding Path="ToXBinding" UpdateSourceTrigger="PropertyChanged"></Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox Width="80" TextAlignment="Center" BorderThickness="1.5" BorderBrush="White" FontSize="16" PreviewTextInput="CheckNumeric_PreviewTextInput" DataObject.Pasting="CheckNumeric_Pasting">
+                    <TextBox.Text>
+                        <Binding Path="ToYBinding" UpdateSourceTrigger="PropertyChanged"></Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </StackPanel>
+
+            <Controls:ToggleSwitch IsChecked="{Binding AutoStartBinding}" Margin="10 0 0 0" Grid.Row="3" Grid.ColumnSpan="2" OnLabel="Autostart Enabled" OffLabel="Autostart Disabled"></Controls:ToggleSwitch>
+        </Grid>
+
+        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+            <TextBlock Margin="5 10 5 5" TextWrapping="Wrap">
+            Only Set the following options if you really know what you are doing. You can get a descriptions of the styles on MSDN.
+            </TextBlock>
+
+            <Label FontSize="14" Margin="5 10 5 0">Window Styles</Label>
+
+            <DataGrid Height="100" BorderBrush="White" BorderThickness="1" Name="StyleGrid" Margin="5 0 5 5" HeadersVisibility="None" CanUserResizeColumns="False" ItemsSource="{Binding Path=StyleBinding}" AutoGenerateColumns="False" SelectionMode="Extended" PreviewMouseDown="StyleGrid_PreviewMouseDown">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Style" Width="200" Binding="{Binding .}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Label FontSize="14" Margin="5 5 5 0">Window Styles Extended</Label>
+
+            <DataGrid Height="100" Name="StyleGridEx" BorderBrush="White" BorderThickness="1" Margin="5 0 5 5" HeadersVisibility="None" CanUserResizeColumns="False" ItemsSource="{Binding Path=StyleExBinding}" AutoGenerateColumns="False" SelectionMode="Extended" PreviewMouseDown="StyleGridEx_PreviewMouseDown">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="StyleEx" Width="200" Binding="{Binding .}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </StackPanel>
+    
+    
+</Controls:MetroWindow>

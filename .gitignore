@@ -1,2 +1,4 @@
 .vs
-Borderlesser\bin
+Borderlesser/bin
+Borderlesser/obj
+packages
