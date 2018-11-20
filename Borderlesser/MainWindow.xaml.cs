@@ -85,7 +85,7 @@ namespace Borderlesser {
          
          m_icon = new System.Windows.Forms.NotifyIcon {
             Visible = true,
-            Icon = new System.Drawing.Icon(System.Drawing.SystemIcons.Exclamation, 40, 40),
+            Icon = new System.Drawing.Icon(Application.GetResourceStream(new Uri("/frame.ico", UriKind.Relative)).Stream),
             ContextMenu = new System.Windows.Forms.ContextMenu(
                new System.Windows.Forms.MenuItem[] {
                   new System.Windows.Forms.MenuItem("Open", (sender, e) => { NotifyShow();        }),
